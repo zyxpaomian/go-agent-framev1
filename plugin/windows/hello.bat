@@ -1,0 +1,1 @@
+@echo your argv is :%1%

@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package msg;
+
+// 心跳包
+message Heartbeat {
+    string Status = 1;
+    string Synctime = 2;
+}
+
+// shell执行命令
+message ShellRun {
+    string Runcmd = 1;
+    string Taskid = 2;    
+}
+
+// shell执行命令返回
+message ShellRunRsp {    
+    string RuncmdRsp = 1;
+    string Taskid = 2;    
+}
+
+// 文件传输封装
+message FileTrans {
+    string SrcFilename = 1;
+    string  DstFilename = 2;
+    bytes FileContent = 3;
+}
+
+// 脚本执行
+message ScriptRun {
+    string Scriptname = 1;
+    repeated string Argvs = 2;
+    string Taskid = 3;
+}
+
+//message ScriptArgvs { 
+    //repeated ScriptRun Args = 1;
+//}
+
+// 脚本执行返回
+message ScriptRunRsp {    
+    string RunRsp = 1;
+    string Taskid = 2;    
+}
