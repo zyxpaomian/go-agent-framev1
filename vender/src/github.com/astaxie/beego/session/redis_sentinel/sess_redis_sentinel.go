@@ -113,12 +113,12 @@ type Provider struct {
 	password    string
 	dbNum       int
 	poollist    *redis.Client
-	masterName  string
+	mainName  string
 }
 
 // SessionInit init redis_sentinel session
-// savepath like redis sentinel addr,pool size,password,dbnum,masterName
-// e.g. 127.0.0.1:26379;127.0.0.2:26379,100,1qaz2wsx,0,mymaster
+// savepath like redis sentinel addr,pool size,password,dbnum,mainName
+// e.g. 127.0.0.1:26379;127.0.0.2:26379,100,1qaz2wsx,0,mymain
 func (rp *Provider) SessionInit(maxlifetime int64, savePath string) error {
 	rp.maxlifetime = maxlifetime
 	configs := strings.Split(savePath, ",")
@@ -150,12 +150,12 @@ func (rp *Provider) SessionInit(maxlifetime int64, savePath string) error {
 	}
 	if len(configs) > 4 {
 		if configs[4] != "" {
-			rp.masterName = configs[4]
+			rp.mainName = configs[4]
 		} else {
-			rp.masterName = "mymaster"
+			rp.mainName = "mymain"
 		}
 	} else {
-		rp.masterName = "mymaster"
+		rp.mainName = "mymain"
 	}
 
 	rp.poollist = redis.NewFailoverClient(&redis.FailoverOptions{
@@ -163,7 +163,7 @@ func (rp *Provider) SessionInit(maxlifetime int64, savePath string) error {
 		Password:      rp.password,
 		PoolSize:      rp.poolsize,
 		DB:            rp.dbNum,
-		MasterName:    rp.masterName,
+		MainName:    rp.mainName,
 	})
 
 	return rp.poollist.Ping().Err()

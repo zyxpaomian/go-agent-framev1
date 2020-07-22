@@ -14,15 +14,15 @@ func TestCygwinPipeName(t *testing.T) {
 		{``, false},
 		{`\msys-`, false},
 		{`\cygwin-----`, false},
-		{`\msys-x-PTY5-pty1-from-master`, false},
-		{`\cygwin-x-PTY5-from-master`, false},
+		{`\msys-x-PTY5-pty1-from-main`, false},
+		{`\cygwin-x-PTY5-from-main`, false},
 		{`\cygwin-x-pty2-from-toaster`, false},
-		{`\cygwin--pty2-from-master`, false},
-		{`\\cygwin-x-pty2-from-master`, false},
-		{`\cygwin-x-pty2-from-master-`, true}, // for the feature
-		{`\cygwin-e022582115c10879-pty4-from-master`, true},
-		{`\msys-e022582115c10879-pty4-to-master`, true},
-		{`\cygwin-e022582115c10879-pty4-to-master`, true},
+		{`\cygwin--pty2-from-main`, false},
+		{`\\cygwin-x-pty2-from-main`, false},
+		{`\cygwin-x-pty2-from-main-`, true}, // for the feature
+		{`\cygwin-e022582115c10879-pty4-from-main`, true},
+		{`\msys-e022582115c10879-pty4-to-main`, true},
+		{`\cygwin-e022582115c10879-pty4-to-main`, true},
 	}
 
 	for _, test := range tests {
