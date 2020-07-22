@@ -96,7 +96,7 @@ func (d *dbBaseSqlite) DbTypes() map[string]string {
 
 // get show tables sql in sqlite.
 func (d *dbBaseSqlite) ShowTablesQuery() string {
-	return "SELECT name FROM sqlite_master WHERE type = 'table'"
+	return "SELECT name FROM sqlite_main WHERE type = 'table'"
 }
 
 // get columns in sqlite.
